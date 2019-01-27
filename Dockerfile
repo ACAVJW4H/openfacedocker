@@ -37,6 +37,7 @@ RUN apt-get -y update && apt-get -y --no-install-recommends install \
         libtbb-dev \
         checkinstall \
         nano \
+        libboost-all-dev \
         libdc1394-22-dev \
     &&  rm -rf /var/lib/apt/lists/* && \
 
