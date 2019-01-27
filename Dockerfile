@@ -94,9 +94,11 @@ RUN cd ~ && mkdir -p dlib && \
 # Install OpenFace
 RUN cd ~ && mkdir -p OpenFace && \
     git clone https://github.com/TadasBaltrusaitis/OpenFace.git OpenFace/
+
+RUN cd ~/OpenFace && chmod +x ./download_models.sh && ~/OpenFace/download_models.sh;
+
 RUN cd ~/OpenFace/ &&  sed -i -e 's/19.13/19.16/g' CMakeLists.txt && mkdir -p build && cd build && \
     cmake -D CMAKE_BUILD_TYPE=RELEASE ..  && \
     make -j$(nproc) && \
     cd .. && \
     echo "OpenFace successfully installed."
-RUN cd ~/OpenFace && chmod +x ./download_models.sh && ~/OpenFace/download_models.sh;
