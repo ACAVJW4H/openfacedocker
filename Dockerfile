@@ -20,7 +20,6 @@ RUN apt-get -y update && apt-get -y --no-install-recommends install \
         pkg-config \
         libatlas-base-dev \
         gfortran \
-        libjasper-dev \
         libgtk2.0-dev \
         libopenblas-dev \
         liblapack-dev \
@@ -68,7 +67,7 @@ RUN mkdir /opencv/build && cd /opencv/build && \
     -D WITH_CUDA=OFF \
     -D BUILD_TIFF=ON \
     -D WITH_TBB=ON \
-    -D WITH_JASPER = OFF \
+    -D WITH_JASPER=OFF \
     -D BUILD_SHARED_LIBS=OFF \
     -D WITH_V4L=ON ..
 
