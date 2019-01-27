@@ -37,12 +37,11 @@ RUN apt-get -y update && apt-get -y --no-install-recommends install \
         libtbb-dev \
         checkinstall \
         nano \
-        libboost-all-dev=1.58.0.1ubuntu1 \
+        libboost-all-dev \
         libdc1394-22-dev \
-    &&  rm -rf /var/lib/apt/lists/*  \
 
 # install python dependencies
-&& wget https://bootstrap.pypa.io/get-pip.py && \
+&&  wget https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
     rm get-pip.py && \
     pip install numpy \
