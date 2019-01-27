@@ -8,6 +8,7 @@ RUN apt-get -y update && apt-get -y --no-install-recommends install \
         python2.7 \
         python2.7-dev \
         git \
+        ca-certificates \
         wget \
         unzip \
         cmake \
