@@ -69,10 +69,10 @@ RUN mkdir /opencv/build && cd /opencv/build && \
     -D WITH_TBB=ON \
     -D WITH_JASPER=OFF \
     -D BUILD_SHARED_LIBS=OFF \
-    -D WITH_V4L=ON ..
+    -D WITH_V4L=ON ..  && \
 
 # Install OpenCV
-RUN cd /opencv/build && \
+    cd /opencv/build && \
     make -j$(nproc) && \
     make install && \
     ldconfig;
@@ -89,11 +89,9 @@ RUN cd ~ && mkdir -p dlib && \
 
 # Install OpenFace
 RUN cd ~ && mkdir -p OpenFace && \
-    git clone https://github.com/TadasBaltrusaitis/OpenFace.git OpenFace/
-
-RUN cd ~/OpenFace && chmod +x ./download_models.sh && ~/OpenFace/download_models.sh;
-
-RUN cd ~/OpenFace/ &&  sed -i -e 's/19.13/19.16/g' CMakeLists.txt && mkdir -p build && cd build && \
+    git clone https://github.com/TadasBaltrusaitis/OpenFace.git OpenFace/ && \
+    cd ~/OpenFace && chmod +x ./download_models.sh && ~/OpenFace/download_models.sh && \
+    cd ~/OpenFace/ &&  sed -i -e 's/19.13/19.16/g' CMakeLists.txt && mkdir -p build && cd build && \
     cmake -D CMAKE_BUILD_TYPE=RELEASE ..  && \
     make -j$(nproc) && \
     cd .. && \
