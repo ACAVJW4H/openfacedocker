@@ -38,10 +38,10 @@ RUN apt-get -y update && apt-get -y --no-install-recommends install \
         checkinstall \
         nano \
         libdc1394-22-dev \
-    &&  rm -rf /var/lib/apt/lists/*
+    &&  rm -rf /var/lib/apt/lists/* && \
 
 # install python dependencies
-RUN wget https://bootstrap.pypa.io/get-pip.py && \
+    wget https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
     rm get-pip.py && \
     pip install numpy;
@@ -54,10 +54,10 @@ RUN wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip -O opencv3
     wget https://github.com/opencv/opencv_contrib/archive/$OPENCV_VERSION.zip -O opencv_contrib3.zip && \
     unzip -q opencv_contrib3.zip && \
     mv /opencv_contrib-$OPENCV_VERSION /opencv_contrib && \
-    rm opencv_contrib3.zip;
+    rm opencv_contrib3.zip && \
 
 # Prepare OpenCV build
-RUN mkdir /opencv/build && cd /opencv/build && \
+    mkdir /opencv/build && cd /opencv/build && \
     cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_PYTHON_SUPPORT=ON \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
