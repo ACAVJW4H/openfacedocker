@@ -41,13 +41,13 @@ RUN apt-get -y update && apt-get -y --no-install-recommends install \
         libdc1394-22-dev \
 
 # install python dependencies
-&&  wget https://bootstrap.pypa.io/get-pip.py && \
+RUN  wget https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
     rm get-pip.py && \
     pip install numpy \
 
 # Download OpenCV
-&&  wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip -O opencv3.zip && \
+RUN  wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip -O opencv3.zip && \
     unzip -q opencv3.zip && \
     mv /opencv-$OPENCV_VERSION /opencv && \
     rm opencv3.zip && \
