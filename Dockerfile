@@ -5,6 +5,7 @@ ENV OPENCV_VERSION 3.4.5
 
 # Install all dependencies for OpenCV
 RUN apt-get -y update && apt-get -y --no-install-recommends install \
+        ca-certificates \
         python2.7 \
         python2.7-dev \
         git \
@@ -35,7 +36,6 @@ RUN apt-get -y update && apt-get -y --no-install-recommends install \
         python-numpy \
         libtbb2 \
         libtbb-dev \
-        checkinstall \
         nano \
         libboost-all-dev \
         libdc1394-22-dev \
@@ -64,13 +64,19 @@ RUN wget https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip -O opencv3
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D OPENCV_EXTRA_MODULES_PATH=/opencv_contrib/modules \
     -D BUILD_EXAMPLES=OFF \
+    -D BUILD_TESTS=OFF \
+    -D BUILD_PERF_TESTS=OFF \
     -D WITH_IPP=OFF \
     -D WITH_FFMPEG=ON \
     -D WITH_CUDA=OFF \
-    -D BUILD_TIFF=ON \
+    -D BUILD_TIFF=OFF \
     -D WITH_TBB=ON \
     -D WITH_JASPER=OFF \
     -D BUILD_SHARED_LIBS=OFF \
+    -D WITH_WEBP=OFF \
+    -D WITH_IMGCODEC_SUNRASTER=OFF \ 
+    -D WITH_IMGCODEC_HDR=OFF \
+    -D WITH_IMGCODEC_PXM=OFF \
     -D WITH_V4L=ON ..  && \
 
 # Install OpenCV
